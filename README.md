@@ -1,50 +1,140 @@
-# Welcome to your Expo app 👋
+# 📌 React Native To-Do List App
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+## 📖 Overview
+The **React Native To-Do List App** is a simple and efficient task management application built using React Native and Expo. It helps users add, search, filter, and manage tasks efficiently while providing an intuitive and visually appealing interface with Dark Mode support.
 
-## Get started
+## 🚀 Features
 
-1. Install dependencies
+### 1️⃣ **Landing Page (Splash Screen & Onboarding)**
+- Displays a splash screen with the app logo.
+- Checks if the user is opening the app for the first time.
+- If first-time user → Shows onboarding screens with an app introduction.
+- If not → Navigates directly to the Home Screen with **Tab Navigation**.
 
-   ```bash
-   npm install
-   ```
+### 2️⃣ **Main Tab Navigation (Three Sections)**
+The app contains three primary tabs:
 
-2. Start the app
+#### 📝 A. **Add Task Screen (Task Management)**
+- Users can enter a new task using a **text input field**.
+- Optional: Allow users to add **#hashtags** within task descriptions.
+- Tasks are stored in **local storage (AsyncStorage) or Firebase**.
+- **Task List Display**:
+  - Displays tasks in a scrollable list.
+  - Each task includes:
+    - **Task Name**
+    - **Hashtags** (if any)
+    - **Completion Status** (Checkbox or Toggle Button)
+  - Users can mark a task as completed or uncompleted via a **checkbox** or **swipe gestures**.
+  - Completed tasks appear with a **strikethrough or different styling**.
 
-   ```bash
-    npx expo start
-   ```
+#### 🔍 B. **Search & Filter Task Screen**
+- **Search Bar**: Users can search tasks by typing keywords.
+- **Hashtag Filter**: Users can filter tasks based on hashtags.
+- **Dynamic List Update**: The task list updates in real-time as users type or select hashtags.
 
-In the output, you'll find options to open the app in a
+#### ⚙️ C. **Settings Screen**
+- **Theme Switching**: Users can toggle between **Light Mode and Dark Mode**.
+- **Delete Options**:
+  - Delete All Completed Tasks
+  - Delete All Tasks (Clear List)
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+### 3️⃣ **Application Testing using Expo Go**
+- Install **Expo Go** on iPhone/Android.
+- Run the following command to start the development server:
+  ```sh
+  expo start
+  ```
+- Scan the **QR Code** to open the app on a real device.
+- Test functionalities:
+  - ✅ Add/Edit/Delete tasks
+  - ✅ Apply filters with hashtags
+  - ✅ Mark tasks as completed
+  - ✅ Change themes
+  - ✅ Validate persistence of data
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+---
 
-## Get a fresh project
+## 🛠️ **Tech Stack**
+- **React Native** (UI development)
+- **Expo** (Development & Testing)
+- **AsyncStorage** (Local Storage for task persistence)
+- **React Navigation** (Tab Navigation)
+- **React Native Paper** (UI Components & Theming)
+- **Firebase (Optional)** (Cloud Database for task storage)
 
-When you're ready, run:
+---
 
-```bash
-npm run reset-project
+## 📂 **Project Structure**
+```
+📦 react-native-todo-list-app
+ ┣ 📂 assets              # App assets (icons, images, etc.)
+ ┣ 📂 components          # Reusable UI components
+ ┣ 📂 screens            # App screens (AddTask, Search, Settings)
+ ┣ 📂 utils              # Utility functions
+ ┣ 📜 App.js             # Main entry point
+ ┣ 📜 navigation.js      # Navigation setup
+ ┣ 📜 theme.js           # Light & Dark Mode configuration
+ ┣ 📜 package.json       # Dependencies & scripts
+ ┣ 📜 README.md          # Documentation
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+---
 
-## Learn more
+## 📦 **Installation & Setup**
+1️⃣ **Clone the repository:**
+```sh
+git clone https://github.com/your-username/react-native-todo-list-app.git
+cd react-native-todo-list-app
+```
 
-To learn more about developing your project with Expo, look at the following resources:
+2️⃣ **Install dependencies:**
+```sh
+npm install
+# OR
+yarn install
+```
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+3️⃣ **Start the Expo development server:**
+```sh
+npx expo start
+```
 
-## Join the community
+4️⃣ **Run on a mobile device:**
+- Install the **Expo Go** app (available on iOS & Android).
+- Scan the QR code displayed in the terminal.
 
-Join our community of developers creating universal apps.
+---
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+## 📸 **Screenshots**
+| Splash Screen | Task List | Search & Filter | Settings |
+|--------------|-----------|----------------|----------|
+| ![Splash](https://via.placeholder.com/200) | ![TaskList](https://via.placeholder.com/200) | ![Search](https://via.placeholder.com/200) | ![Settings](https://via.placeholder.com/200) |
+
+---
+
+## 🤝 **Contributing**
+1. **Fork the repository**.
+2. **Create a new branch** for your feature (`git checkout -b feature-name`).
+3. **Commit your changes** (`git commit -m 'Add new feature'`).
+4. **Push to your branch** (`git push origin feature-name`).
+5. **Submit a Pull Request**.
+
+---
+
+## 🔥 **Upcoming Features**
+- ✅ Task Categories
+- ✅ Reminder Notifications
+- ✅ Cloud Syncing with Firebase
+- ✅ Drag & Drop Task Sorting
+
+---
+
+## ⚖️ **License**
+This project is licensed under the **MIT License**.
+
+---
+
+## 🙌 **Support & Feedback**
+If you encounter any issues, feel free to [open an issue](https://github.com/your-username/react-native-todo-list-app/issues) or contact me at **your-email@example.com**.
+
+Happy Coding! 🚀
