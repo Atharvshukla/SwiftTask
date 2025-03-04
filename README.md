@@ -104,13 +104,20 @@ npx expo start
 - Scan the QR code displayed in the terminal.
 
 ---
-
 ## 📸 **Screenshots**
-| Splash Screen | Task List | Search & Filter | Settings |
-|--------------|-----------|----------------|----------|
-| ![Splash](https://via.placeholder.com/200) | ![image](https://github.com/user-attachments/assets/a3c1aef5-2d8f-4d39-9c1f-405c5129b560)![image](https://github.com/user-attachments/assets/c56e5e33-86bb-4e8c-9f6e-84f424f2b105)
 
-) | ![Search](https://via.placeholder.com/200) | ![Settings](https://via.placeholder.com/200) |
+### 🏠 **App Screens Overview**
+| Splash Screen | Task List | Settings |
+|--------------|-----------|----------|
+| ![Splash](https://via.placeholder.com/250x500) | ![Task List](https://github.com/user-attachments/assets/a3c1aef5-2d8f-4d39-9c1f-405c5129b560) | ![Settings](https://via.placeholder.com/250x500) |
+
+---
+
+### 🔍 **Search & Filter Variations**
+| Filter added | Filter 1 | Filter 2 | Filter 3 |
+|----------|----------|----------|----------|
+| ![Filter 1](https://github.com/user-attachments/assets/2251518c-a251-4feb-8de1-83a490ef3ba8) | ![Filter 2](https://github.com/user-attachments/assets/72db5a78-ebd7-473e-bc6d-17d346d9aae8) | ![Filter 3](https://github.com/user-attachments/assets/8d56435f-5a76-4f7c-b506-6da522f6e7e7) | ![Filter 4](https://github.com/user-attachments/assets/48136eae-7468-483b-843d-03280518e308) |
+
 
 ---
 
