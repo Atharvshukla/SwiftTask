@@ -145,16 +145,7 @@ npx expo start
 | ![Filter 1](https://github.com/user-attachments/assets/2251518c-a251-4feb-8de1-83a490ef3ba8) | ![Filter 2](https://github.com/user-attachments/assets/72db5a78-ebd7-473e-bc6d-17d346d9aae8) | ![Filter 3](https://github.com/user-attachments/assets/8d56435f-5a76-4f7c-b506-6da522f6e7e7) | ![Filter 4](https://github.com/user-attachments/assets/48136eae-7468-483b-843d-03280518e308) |
 
 
----
 
-## 🤝 **Contributing**
-1. **Fork the repository**.
-2. **Create a new branch** for your feature (`git checkout -b feature-name`).
-3. **Commit your changes** (`git commit -m 'Add new feature'`).
-4. **Push to your branch** (`git push origin feature-name`).
-5. **Submit a Pull Request**.
-
----
 
 ## 🔥 **Upcoming Features**
 - ✅ Task Categories
@@ -168,8 +159,5 @@ npx expo start
 This project is licensed under the **MIT License**.
 
 ---
-
-## 🙌 **Support & Feedback**
-If you encounter any issues, feel free to [open an issue](https://github.com/your-username/react-native-todo-list-app/issues) or contact me at **your-email@example.com**.
 
 Happy Coding! 🚀
