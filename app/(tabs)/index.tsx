@@ -15,7 +15,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { StatusBar } from 'expo-status-bar';
 import { CirclePlus as PlusCircle, CircleCheck as CheckCircle, Circle, Trash2 } from 'lucide-react-native';
 import { useTodos } from '@/hooks/useTodos';
-import { extractHashtags } from '@/utils/hashtags';
+import { extractHashtags } from '@/utils/hashtag';
 import { useTheme } from '@/hooks/useTheme';
 
 export default function HomeScreen() {
