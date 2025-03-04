@@ -67,15 +67,40 @@ The app contains three primary tabs:
 ## 📂 **Project Structure**
 ```
 📦 react-native-todo-list-app
- ┣ 📂 assets              # App assets (icons, images, etc.)
- ┣ 📂 components          # Reusable UI components
- ┣ 📂 screens            # App screens (AddTask, Search, Settings)
- ┣ 📂 utils              # Utility functions
- ┣ 📜 App.js             # Main entry point
- ┣ 📜 navigation.js      # Navigation setup
- ┣ 📜 theme.js           # Light & Dark Mode configuration
- ┣ 📜 package.json       # Dependencies & scripts
- ┣ 📜 README.md          # Documentation
+ ┣ 📜 README.md                 # Project documentation
+ ┣ 📜 app.json                   # Expo configuration
+ ┣ 📜 tsconfig.json               # TypeScript configuration
+ ┣ 📜 package.json               # Dependencies & scripts
+ ┣ 📜 package-lock.json          # Lock file for package versions
+ ┣ 📂 assets                     # Static assets (images, fonts, icons)
+ ┃ ┣ 📂 fonts
+ ┃ ┃ ┗ 📜 SpaceMono-Regular.ttf  # Custom font
+ ┃ ┣ 📂 images
+ ┃ ┃ ┣ 📜 adaptive-icon.png
+ ┃ ┃ ┣ 📜 favicon.png
+ ┃ ┃ ┣ 📜 icon.png
+ ┃ ┃ ┣ 📜 splash-icon.png
+ ┃ ┃ ┗ 📜 react-logo.png
+ ┣ 📂 app                        # App screens and navigation (Expo Router)
+ ┃ ┣ 📂 (tabs)                   # Tab-based navigation
+ ┃ ┃ ┣ 📜 _layout.tsx            # Tab navigation layout
+ ┃ ┃ ┣ 📜 index.tsx              # Home screen (Add Task)
+ ┃ ┃ ┣ 📜 search.tsx             # Search & Filter screen
+ ┃ ┃ ┗ 📜 settings.tsx           # Settings screen
+ ┃ ┣ 📜 +not-found.tsx           # 404 screen (for unknown routes)
+ ┃ ┣ 📜 _layout.tsx              # Main layout for the app
+ ┃ ┗ 📜 index.tsx                # App entry point (Landing Page)
+ ┣ 📂 components                 # Reusable UI components (Buttons, Input, etc.)
+ ┣ 📂 context                    # Global state management
+ ┃ ┗ 📜 TodosContext.tsx         # Context API for managing tasks
+ ┣ 📂 hooks                      # Custom hooks for state management
+ ┃ ┣ 📜 useTheme.tsx             # Custom hook for theme switching
+ ┃ ┗ 📜 useTodos.tsx             # Custom hook for managing todos
+ ┣ 📂 scripts                    # Utility scripts
+ ┃ ┗ 📜 reset-project.js         # Script to reset the project state
+ ┣ 📂 utils                      # Utility functions
+ ┃ ┗ 📜 hashtag.ts               # Function to extract & manage hashtags
+
 ```
 
 ---
