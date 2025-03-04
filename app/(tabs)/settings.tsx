@@ -98,7 +98,10 @@ export default function SettingsScreen() {
           
           <TouchableOpacity
             style={[styles.settingItem, themeStyles.settingItem]}
-            onPress={clearCompletedTodos}
+            onPress={() => {
+              console.log('Clear Completed Tasks button pressed');
+              clearCompletedTodos();
+            }}
             activeOpacity={0.7}
           >
             <View style={[styles.settingIconContainer, themeStyles.settingIconContainer]}>
@@ -114,7 +117,10 @@ export default function SettingsScreen() {
 
           <TouchableOpacity
             style={[styles.settingItem, themeStyles.settingItem]}
-            onPress={clearAllTodos}
+            onPress={() => {
+              console.log('Clear All Tasks button pressed');
+              clearAllTodos();
+            }}
             activeOpacity={0.7}
           >
             <View style={[styles.settingIconContainer, themeStyles.settingIconContainer]}>

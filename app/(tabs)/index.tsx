@@ -26,6 +26,8 @@ export default function HomeScreen() {
   const scrollViewRef = useRef<ScrollView>(null);
   const addButtonScale = useRef(new Animated.Value(1)).current;
 
+  console.log('Rendering HomeScreen with todos:', todos);
+
   // Animation for add button
   const animateButton = () => {
     Animated.sequence([
