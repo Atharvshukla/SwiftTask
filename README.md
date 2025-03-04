@@ -108,7 +108,9 @@ npx expo start
 ## 📸 **Screenshots**
 | Splash Screen | Task List | Search & Filter | Settings |
 |--------------|-----------|----------------|----------|
-| ![Splash](https://via.placeholder.com/200) | ![TaskList](https://via.placeholder.com/200) | ![Search](https://via.placeholder.com/200) | ![Settings](https://via.placeholder.com/200) |
+| ![Splash](https://via.placeholder.com/200) | ![image](https://github.com/user-attachments/assets/a3c1aef5-2d8f-4d39-9c1f-405c5129b560)![image](https://github.com/user-attachments/assets/c56e5e33-86bb-4e8c-9f6e-84f424f2b105)
+
+) | ![Search](https://via.placeholder.com/200) | ![Settings](https://via.placeholder.com/200) |
 
 ---
 
