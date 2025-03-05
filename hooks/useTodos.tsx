@@ -82,6 +82,15 @@ export function useTodos() {
     setTodos([]);
   };
 
+  // New editTodo function
+  const editTodo = (id: string, newText: string) => {
+    setTodos((prevTodos) =>
+      prevTodos.map((todo) =>
+        todo.id === id ? { ...todo, text: newText } : todo
+      )
+    );
+  };
+
   return {
     todos,
     isLoading,
@@ -90,5 +99,6 @@ export function useTodos() {
     removeTodo,
     clearCompletedTodos,
     clearAllTodos,
+    editTodo, // Add editTodo to the returned object
   };
 }

@@ -10,23 +10,55 @@ import {
   Platform,
   KeyboardAvoidingView,
   Animated,
+  Dimensions,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { StatusBar } from 'expo-status-bar';
-import { CirclePlus as PlusCircle, CircleCheck as CheckCircle, Circle, Trash2 } from 'lucide-react-native';
+import {
+  CirclePlus as PlusCircle,
+  CircleCheck as CheckCircle,
+  Circle,
+  Trash2,
+  Pencil,
+} from 'lucide-react-native';
 import { useTodos } from '@/hooks/useTodos';
 import { extractHashtags } from '@/utils/hashtag';
 import { useTheme } from '@/hooks/useTheme';
+import BottomSheet, { BottomSheetRefProps } from '@/components/BottomSheet';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
+
+const { height: SCREEN_HEIGHT } = Dimensions.get('window');
 
 export default function HomeScreen() {
-  const { todos, addTodo, toggleTodo, removeTodo } = useTodos();
+  const { todos, addTodo, editTodo, toggleTodo, removeTodo } = useTodos();
   const { isDarkMode } = useTheme();
   const [newTodo, setNewTodo] = useState('');
+  const [selectedTodoId, setSelectedTodoId] = useState<string | null>(null);
+  const [keyboardHeight, setKeyboardHeight] = useState(0);
   const inputRef = useRef<TextInput>(null);
   const scrollViewRef = useRef<ScrollView>(null);
   const addButtonScale = useRef(new Animated.Value(1)).current;
+  const bottomSheetRef = useRef<BottomSheetRefProps>(null);
 
-  console.log('Rendering HomeScreen with todos:', todos);
+  useEffect(() => {
+    const keyboardWillShow = Keyboard.addListener(
+      Platform.OS === 'ios' ? 'keyboardWillShow' : 'keyboardDidShow',
+      (e) => {
+        setKeyboardHeight(e.endCoordinates.height);
+      }
+    );
+    const keyboardWillHide = Keyboard.addListener(
+      Platform.OS === 'ios' ? 'keyboardWillHide' : 'keyboardDidHide',
+      () => {
+        setKeyboardHeight(0);
+      }
+    );
+
+    return () => {
+      keyboardWillShow.remove();
+      keyboardWillHide.remove();
+    };
+  }, []);
 
   // Animation for add button
   const animateButton = () => {
@@ -50,15 +82,24 @@ export default function HomeScreen() {
       setNewTodo('');
       animateButton();
       Keyboard.dismiss();
-      
-      // Extract hashtags and store them if needed
-      const hashtags = extractHashtags(newTodo.trim());
-      // You might want to store these hashtags somewhere if needed
 
       // Scroll to bottom after adding a new todo
       setTimeout(() => {
         scrollViewRef.current?.scrollToEnd({ animated: true });
       }, 100);
+    }
+  };
+
+  const handleEditPress = (todoId: string) => {
+    setSelectedTodoId(todoId);
+    const destination = Platform.OS === 'ios' ? -SCREEN_HEIGHT * 0.5 : -300;
+    bottomSheetRef.current?.scrollTo(destination);
+  };
+
+  const handleEditSave = (newText: string) => {
+    if (selectedTodoId && newText.trim()) {
+      editTodo(selectedTodoId, newText.trim());
+      setSelectedTodoId(null);
     }
   };
 
@@ -112,112 +153,159 @@ export default function HomeScreen() {
   };
 
   return (
-    <SafeAreaView style={[styles.container, themeStyles.container]}>
-      <StatusBar style={isDarkMode ? 'light' : 'dark'} />
-      <KeyboardAvoidingView
-        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-        style={styles.keyboardAvoidingView}
-        keyboardVerticalOffset={Platform.select({ ios: 60, android: 0 })}
-      >
-        <View style={[styles.header, themeStyles.header]}>
-          <Text style={[styles.title, themeStyles.title]}>My Tasks</Text>
-          <Text style={[styles.subtitle, themeStyles.subtitle]}>
-            {todos.filter(todo => todo.completed).length}/{todos.length} completed
-          </Text>
-        </View>
-
-        <ScrollView
-          ref={scrollViewRef}
-          style={styles.scrollView}
-          contentContainerStyle={styles.todoList}
-          showsVerticalScrollIndicator={false}
+    <GestureHandlerRootView style={{ flex: 1 }}>
+      <SafeAreaView style={[styles.container, themeStyles.container]}>
+        <StatusBar style={isDarkMode ? 'light' : 'dark'} />
+        <KeyboardAvoidingView
+          behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+          style={styles.keyboardAvoidingView}
+          keyboardVerticalOffset={Platform.OS === 'ios' ? 0 : 24}
         >
-          {todos.map((todo) => {
-            const hashtags = extractHashtags(todo.text);
-            return (
-              <TouchableOpacity
-                key={todo.id}
-                style={[
-                  styles.todoItem,
-                  themeStyles.todoItem,
-                  todo.completed && [styles.todoItemCompleted, themeStyles.todoItemCompleted],
-                ]}
-                onPress={() => toggleTodo(todo.id)}
-                activeOpacity={0.7}
-              >
-                <View style={styles.todoCheckbox}>
-                  {todo.completed ? (
-                    <CheckCircle size={24} color="#6366f1" />
-                  ) : (
-                    <Circle size={24} color={isDarkMode ? '#94a3b8' : '#94a3b8'} />
-                  )}
-                </View>
-                <View style={styles.todoTextContainer}>
-                  <Text
-                    style={[
-                      styles.todoText,
-                      themeStyles.todoText,
-                      todo.completed && [styles.todoTextCompleted, themeStyles.todoTextCompleted],
-                    ]}
-                  >
-                    {todo.text.split(' ').map((word, index) => {
-                      if (word.startsWith('#')) {
-                        return (
-                          <Text key={index} style={styles.hashtag}>
-                            {word}{' '}
-                          </Text>
-                        );
-                      }
-                      return word + ' ';
-                    })}
-                  </Text>
-                  {hashtags.length > 0 && (
-                    <View style={styles.hashtagContainer}>
-                      {hashtags.map((tag, index) => (
-                        <View key={index} style={[styles.hashtagBadge, themeStyles.hashtagBadge]}>
-                          <Text style={styles.hashtagBadgeText}>{tag}</Text>
-                        </View>
-                      ))}
-                    </View>
-                  )}
-                </View>
-                <TouchableOpacity
-                  style={styles.deleteButton}
-                  onPress={() => removeTodo(todo.id)}
-                >
-                  <Trash2 size={20} color="#ef4444" />
-                </TouchableOpacity>
-              </TouchableOpacity>
-            );
-          })}
-        </ScrollView>
+          <View style={[styles.header, themeStyles.header]}>
+            <Text style={[styles.title, themeStyles.title]}>My Tasks</Text>
+            <Text style={[styles.subtitle, themeStyles.subtitle]}>
+              {todos.filter((todo) => todo.completed).length}/{todos.length}{' '}
+              completed
+            </Text>
+          </View>
 
-        <View style={styles.inputContainer}>
-          <TextInput
-            ref={inputRef}
-            style={[styles.input, themeStyles.input]}
-            placeholder="Add a new task..."
-            placeholderTextColor={isDarkMode ? '#64748b' : '#94a3b8'}
-            value={newTodo}
-            onChangeText={setNewTodo}
-            onSubmitEditing={handleAddTodo}
-            returnKeyType="done"
-            blurOnSubmit={false}
-          />
-          <Animated.View
+          <ScrollView
+            ref={scrollViewRef}
+            style={styles.scrollView}
+            contentContainerStyle={[
+              styles.todoList,
+              { paddingBottom: keyboardHeight + 100 },
+            ]}
+            showsVerticalScrollIndicator={false}
+          >
+            {todos.map((todo) => {
+              const hashtags = extractHashtags(todo.text);
+              return (
+                <View
+                  key={todo.id}
+                  style={[
+                    styles.todoItem,
+                    themeStyles.todoItem,
+                    todo.completed && [
+                      styles.todoItemCompleted,
+                      themeStyles.todoItemCompleted,
+                    ],
+                  ]}
+                >
+                  <TouchableOpacity
+                    style={styles.todoCheckbox}
+                    onPress={() => toggleTodo(todo.id)}
+                  >
+                    {todo.completed ? (
+                      <CheckCircle size={24} color="#6366f1" />
+                    ) : (
+                      <Circle
+                        size={24}
+                        color={isDarkMode ? '#94a3b8' : '#94a3b8'}
+                      />
+                    )}
+                  </TouchableOpacity>
+                  <View style={styles.todoTextContainer}>
+                    <Text
+                      style={[
+                        styles.todoText,
+                        themeStyles.todoText,
+                        todo.completed && [
+                          styles.todoTextCompleted,
+                          themeStyles.todoTextCompleted,
+                        ],
+                      ]}
+                    >
+                      {todo.text.split(' ').map((word, index) => {
+                        if (word.startsWith('#')) {
+                          return (
+                            <Text key={index} style={styles.hashtag}>
+                              {word}{' '}
+                            </Text>
+                          );
+                        }
+                        return word + ' ';
+                      })}
+                    </Text>
+                    {hashtags.length > 0 && (
+                      <View style={styles.hashtagContainer}>
+                        {hashtags.map((tag, index) => (
+                          <View
+                            key={index}
+                            style={[
+                              styles.hashtagBadge,
+                              themeStyles.hashtagBadge,
+                            ]}
+                          >
+                            <Text style={styles.hashtagBadgeText}>{tag}</Text>
+                          </View>
+                        ))}
+                      </View>
+                    )}
+                  </View>
+                  <View style={styles.actionButtons}>
+                    <TouchableOpacity
+                      style={styles.actionButton}
+                      onPress={() => handleEditPress(todo.id)}
+                    >
+                      <Pencil size={20} color="#6366f1" />
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                      style={styles.actionButton}
+                      onPress={() => removeTodo(todo.id)}
+                    >
+                      <Trash2 size={20} color="#ef4444" />
+                    </TouchableOpacity>
+                  </View>
+                </View>
+              );
+            })}
+          </ScrollView>
+
+          <View 
             style={[
-              styles.addButton,
-              themeStyles.addButton,
-              { transform: [{ scale: addButtonScale }] },
+              styles.inputContainer,
+              {
+                bottom: Platform.OS === 'ios' ? keyboardHeight + 20 : 20,
+                paddingHorizontal: 20,
+              },
             ]}
           >
-            <TouchableOpacity onPress={handleAddTodo} activeOpacity={0.7}>
-              <PlusCircle size={48} color="#6366f1" />
-            </TouchableOpacity>
-          </Animated.View>
-        </View>
-      </KeyboardAvoidingView>
-    </SafeAreaView>
+            <TextInput
+              ref={inputRef}
+              style={[styles.input, themeStyles.input]}
+              placeholder="Add a new task..."
+              placeholderTextColor={isDarkMode ? '#64748b' : '#94a3b8'}
+              value={newTodo}
+              onChangeText={setNewTodo}
+              onSubmitEditing={handleAddTodo}
+              returnKeyType="done"
+              blurOnSubmit={false}
+            />
+            <Animated.View
+              style={[
+                styles.addButton,
+                themeStyles.addButton,
+                { transform: [{ scale: addButtonScale }] },
+              ]}
+            >
+              <TouchableOpacity onPress={handleAddTodo} activeOpacity={0.7}>
+                <PlusCircle size={48} color="#6366f1" />
+              </TouchableOpacity>
+            </Animated.View>
+          </View>
+        </KeyboardAvoidingView>
+
+        {selectedTodoId && (
+          <BottomSheet
+            ref={bottomSheetRef}
+            taskText={todos.find((todo) => todo.id === selectedTodoId)?.text || ''}
+            onSave={handleEditSave}
+            onClose={() => setSelectedTodoId(null)}
+          />
+        )}
+      </SafeAreaView>
+    </GestureHandlerRootView>
   );
 }
 
@@ -309,14 +397,21 @@ const styles = StyleSheet.create({
     fontSize: 12,
     fontWeight: '600',
   },
-  deleteButton: {
+  actionButtons: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 8,
+  },
+  actionButton: {
     padding: 8,
   },
   inputContainer: {
+    position: 'absolute',
+    left: 0,
+    right: 0,
     flexDirection: 'row',
     alignItems: 'center',
-    padding: 20,
-    backgroundColor: '#f8fafc',
+    backgroundColor: 'transparent',
   },
   input: {
     flex: 1,
