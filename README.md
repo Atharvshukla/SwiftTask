@@ -132,10 +132,10 @@ npx expo start
 ## 📸 **Screenshots**
 
 ### 🏠 **App Screens Overview**
-| Splash Screen | Task List | Settings |
-|--------------|-----------|----------|
-| ![Splash](https://via.placeholder.com/250x500) | ![Task List](https://github.com/user-attachments/assets/a3c1aef5-2d8f-4d39-9c1f-405c5129b560) |![image](https://github.com/user-attachments/assets/ae56f8d7-efbc-4725-b96c-01782dcc94f5)
-|
+
+| **Splash Screen** | **Task List** | **Settings** |
+|------------------|-------------|------------|
+| ![Splash Screen](https://github.com/user-attachments/assets/f7effbd1-3aee-4a61-ab0c-04d0ffa24287) | ![Task List](https://github.com/user-attachments/assets/a3c1aef5-2d8f-4d39-9c1f-405c5129b560) | ![Settings](https://github.com/user-attachments/assets/ae56f8d7-efbc-4725-b96c-01782dcc94f5) |
 
 ---
 
