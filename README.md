@@ -3,13 +3,30 @@
 ## 📖 Overview
 The **React Native To-Do List App** is a simple and efficient task management application built using React Native and Expo. It helps users add, search, filter, and manage tasks efficiently while providing an intuitive and visually appealing interface with Dark Mode support.
 
+## 🎬 App Preview  
+
+<table>
+  <tr>
+    <th style="width: 50%">📱 iOS Demo</th>
+    <th style="width: 50%">🤖 Android Demo</th>
+  </tr>
+  <tr>
+    <td align="center">
+      <img src="https://github.com/user-attachments/assets/3d8a29b3-11e8-4383-9a96-fa139c09c3da" width="250">
+    </td>
+    <td align="center">
+      <img src="https://github.com/user-attachments/assets/YOUR-ANDROID-GIF-ID" width="250">
+    </td>
+  </tr>
+</table>
+
 ## 🚀 Features
 
 ### 1️⃣ **Landing Page (Splash Screen & Onboarding)**
 - Displays a splash screen with the app logo.
 - Checks if the user is opening the app for the first time.
-- If first-time user → Shows onboarding screens with an app introduction.
-- If not → Navigates directly to the Home Screen with **Tab Navigation**.
+- Shows onboarding screens with an app introduction.
+-  Navigates to the Home Screen with **Tab Navigation**.
 
 ### 2️⃣ **Main Tab Navigation (Three Sections)**
 The app contains three primary tabs:
@@ -17,7 +34,7 @@ The app contains three primary tabs:
 #### 📝 A. **Add Task Screen (Task Management)**
 - Users can enter a new task using a **text input field**.
 - Optional: Allow users to add **#hashtags** within task descriptions.
-- Tasks are stored in **local storage (AsyncStorage) or Firebase**.
+- Tasks are stored in **local storage (AsyncStorage) .
 - **Task List Display**:
   - Displays tasks in a scrollable list.
   - Each task includes:
@@ -58,9 +75,9 @@ The app contains three primary tabs:
 - **React Native** (UI development)
 - **Expo** (Development & Testing)
 - **AsyncStorage** (Local Storage for task persistence)
-- **React Navigation** (Tab Navigation)
-- **React Native Paper** (UI Components & Theming)
-- **Firebase (Optional)** (Cloud Database for task storage)
+- **React  Navigation** (Tab Navigation)
+- **React Native ** (UI Components & Theming)
+- **Firebase (Will Be Implemented)** (Cloud Database for task storage)
 
 ---
 
@@ -143,8 +160,6 @@ npx expo start
 | Filter added | Filter 1 | Filter 2 | Filter 3 |
 |----------|----------|----------|----------|
 | ![Filter 1](https://github.com/user-attachments/assets/2251518c-a251-4feb-8de1-83a490ef3ba8) | ![Filter 2](https://github.com/user-attachments/assets/72db5a78-ebd7-473e-bc6d-17d346d9aae8) | ![Filter 3](https://github.com/user-attachments/assets/8d56435f-5a76-4f7c-b506-6da522f6e7e7) | ![Filter 4](https://github.com/user-attachments/assets/48136eae-7468-483b-843d-03280518e308) |
-
-
 
 
 ## 🔥 **Upcoming Features**
