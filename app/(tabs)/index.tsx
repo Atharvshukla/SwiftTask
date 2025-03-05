@@ -117,6 +117,7 @@ export default function HomeScreen() {
       <KeyboardAvoidingView
         behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
         style={styles.keyboardAvoidingView}
+        keyboardVerticalOffset={Platform.select({ ios: 60, android: 0 })}
       >
         <View style={[styles.header, themeStyles.header]}>
           <Text style={[styles.title, themeStyles.title]}>My Tasks</Text>
@@ -312,12 +313,10 @@ const styles = StyleSheet.create({
     padding: 8,
   },
   inputContainer: {
-    position: 'absolute',
-    bottom: 20,
-    left: 20,
-    right: 20,
     flexDirection: 'row',
     alignItems: 'center',
+    padding: 20,
+    backgroundColor: '#f8fafc',
   },
   input: {
     flex: 1,
