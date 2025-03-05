@@ -15,8 +15,7 @@ The **React Native To-Do List App** is a simple and efficient task management ap
       <img src="https://github.com/user-attachments/assets/3d8a29b3-11e8-4383-9a96-fa139c09c3da" width="250">
     </td>
     <td align="center">
-      <img src="![androidDemo](https://github.com/user-attachments/assets/2a4174bf-e7b6-4f38-b89e-5b58e629d4f9)
-" width="250">
+      <img src="https://github.com/user-attachments/assets/70ee7b55-beba-4107-b299-f0fba675e3d4" width="250">
     </td>
   </tr>
 </table>
@@ -170,7 +169,10 @@ npx expo start
 - ✅ Drag & Drop Task Sorting
 
 ---
+## 🐙💻 **Source Control Graph (Wednesday 5th March)**
+![image](https://github.com/user-attachments/assets/371d6e56-ebfd-4f10-a340-b026bfa78d32)
 
+---
 ## ⚖️ **License**
 This project is licensed under the **MIT License**.
 
