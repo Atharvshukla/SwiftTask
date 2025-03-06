@@ -75,7 +75,7 @@ export default function HomeScreen() {
       }),
     ]).start();
   };
-
+//Function to handel the useTodo Hooks
   const handleAddTodo = () => {
     if (newTodo.trim()) {
       addTodo(newTodo.trim());
