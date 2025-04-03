@@ -1,7 +1,7 @@
-# 📌 TaskMaster
+# 📌 SwiftTask
 
 ## 📖 Overview
-The **TaskMaster** is a simple and efficient task management application built using React Native and Expo. It helps users add, search, filter, and manage tasks efficiently while providing an intuitive and visually appealing interface with Dark Mode support.
+The **SwiftTask** is a simple and efficient task management application built using React Native and Expo. It helps users add, search, filter, and manage tasks efficiently while providing an intuitive and visually appealing interface with Dark Mode support.
 ## 📋 Workflow
 
 https://whimsical.com/to-dolist-react-native-sust-WiiCyjDwr4Ba4kkXniz3bt
